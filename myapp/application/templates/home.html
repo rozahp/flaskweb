@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+  <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    {% if tid == 0 and search == False %}
+
+    <!-- JUMBOTRON -->
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to Flask WebApp</h1>
+            <p class="lead">Please select something from the menu or search!</p>
+        </div>
+    </div>
+
+    {% endif %}
+
+    {% if search!=False or tid != 0 %}
+
+    <!-- PROGRAMS -->
+
+    <table style="width:100%" class="table table-striped">
+        <thead class="thead-dark">
+         <tr>
+            <th>Id</th>
+            <th>Play</th>
+            <th>Theme</th> 
+            <th>Date</th>
+            <th>Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in programs %}
+            <tr> 
+                <td>{{p.id}}</td> 
+
+                <td>
+                    {% if search != False %}
+                    <a href="?search={{search}}&{{p.link}}"><img src="{{p.image}}" alt="Play Video" title="Play Video" width="50" height="50"></a>
+                    {% else %}
+                    <a href="?{{p.link}}"><img src="{{p.image}}" alt="Play Video" title="Play Video" width="50" height="50">    
+                    {% endif %}
+                </td>
+                <!--
+                <td>
+                    {% if search != False %}
+                    <a class="btn btn-outline-primary" href="?search={{search}}&{{p.link}}" role="button">PLAY</a>
+                    {% else %}
+                    <a class="btn btn-outline-primary" href="?{{p.link}}" role="button">PLAY</a>
+                    {% endif %}
+                </td>
+                -->
+                <td>{{p.theme}}</td>
+                <td>{{p.date}}</td>
+                <td>{{p.title_name}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+{% endblock %}

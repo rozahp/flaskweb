@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{description}}">
+
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+
+    <!-- Custom Stuff -->
+
+    {% block css %}{% endblock %}
+
+    <title>{{title}}</title>
+
+    <!--
+      <link rel="shortcut icon" href="{{url_for('static', filename='image/favicon.ico')}}">
+    -->
+
+    <!-- FLASH MESSAGES -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+          <center>{{message}}</center>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+  </head>
+
+  <!-- BODY -->
+
+  <body role="document">
+  
+    <!-- Begin page content -->
+
+    <!-- NAVBAR -->
+
+    {% include 'navigation.html' %}
+
+    <!-- CONTENT BODY -->
+
+    {% block content %}{% endblock %}
+
+    <!-- NAVBAR FIXED BOTTOM -->
+
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+      <span class="navbar-brand ml-auto mx-auto">Flask (c) 2024</span>
+    </nav>
+
+    <!-- BOOTSTRAP JAVASCRIPT -->
+
+    <script src="{{url_for('static', filename='js/jquery-3.7.1.slim.min.js') }}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

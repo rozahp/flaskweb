@@ -1,0 +1,29 @@
+
+    <header>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">FlaskWeb</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            {% for link in nav %}
+              <li class="nav-item {{link.active}}">
+                <a class="nav-link" href="{{ link.url }}">{{ link.name }}<span class="sr-only"></span></a>
+              </li>
+              {% endfor %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/" method="POST">
+              {% if search != False %}
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" id="searchBox" value="{{search}}">
+              {% else %}
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="search" id="searchBox">
+              {% endif %}
+              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
